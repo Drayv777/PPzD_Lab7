@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 #pragma warning disable CS0649
 
@@ -7,6 +8,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] PlayerSubsystem[] subsystems;
     [SerializeField] Transform targetSensor;
 
+    [SerializeField] PlayerAudioController audioController;
+    
     bool initialised;
     PlayerInput input;
 
@@ -28,8 +31,11 @@ public class PlayerController : MonoBehaviour {
         banditController.DiedEvent += () => NotifySubsystemsAboutNewEvent(PlayerEventType.Death);
         banditController.FootstepEvent += () => NotifySubsystemsAboutNewEvent(PlayerEventType.Footstep);
         banditController.AttackHitEvent += CheckForTargetsAndHit;
+        banditController.TakenDamageEvent += () => NotifySubsystemsAboutNewEvent(PlayerEventType.Damage);
+        banditController.BlockedEvent += () => NotifySubsystemsAboutNewEvent(PlayerEventType.Block);
         input = new PlayerInput();
         banditController.Setup(input);
+        banditController.isPlayer = true;
         initialised = true;
     }
 
@@ -42,6 +48,8 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    
+    
     void NotifySubsystemsAboutNewEvent(PlayerEventType eventType) {
         foreach (var playerSubsystem in subsystems)
             playerSubsystem.HandleEvent(eventType);
@@ -49,6 +57,12 @@ public class PlayerController : MonoBehaviour {
 
     public void DealDamage(float damage) {
         banditController.TakeDamage(damage);
+        
+        float f = banditController.getCurrentHealth();
+        float t = 0.3f * banditController.getMaxHealth();
+        if (f < t) {
+            audioController.UpdateHeartBeat(1-(f/t));
+        }
     }
 
 }
@@ -68,5 +82,7 @@ public enum PlayerEventType {
     Landing,
     Death,
     Attack,
-    Footstep
+    Footstep,
+    Damage,
+    Block
 }

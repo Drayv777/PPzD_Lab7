@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EncodableAsset" id="{296b0403-cfb8-4f6e-9119-fb0664eff43a}">
+		<property name="assetPath">
+			<value>Character/Swoosh/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2e7fa7ae-b49d-436c-aabb-4972b813b748}</destination>
+		</relationship>
+	</object>
+</objects>

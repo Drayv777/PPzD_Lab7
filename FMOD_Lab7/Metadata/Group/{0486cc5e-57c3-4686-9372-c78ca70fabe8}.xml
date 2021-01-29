@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="MixerGroup" id="{0486cc5e-57c3-4686-9372-c78ca70fabe8}">
+		<property name="name">
+			<value>HeartBeatLoudness</value>
+		</property>
+		<relationship name="automators">
+			<destination>{3467a03d-4448-4c64-93ca-30fbcfa7981e}</destination>
+		</relationship>
+		<relationship name="effectChain">
+			<destination>{21bf3dec-a2ad-4f48-8363-015a1da5eb43}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{783c438a-cce1-4c21-8fba-dba48390ec8f}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{ad8a0838-1dee-4114-b36b-6ee21ebfb568}</destination>
+		</relationship>
+	</object>
+	<object class="Automator" id="{3467a03d-4448-4c64-93ca-30fbcfa7981e}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>volume</value>
+		</property>
+	</object>
+	<object class="MixerBusEffectChain" id="{21bf3dec-a2ad-4f48-8363-015a1da5eb43}">
+		<relationship name="effects">
+			<destination>{20468534-1523-4f8b-af39-0e9dd03fe39a}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{783c438a-cce1-4c21-8fba-dba48390ec8f}" />
+	<object class="MixerBusFader" id="{20468534-1523-4f8b-af39-0e9dd03fe39a}" />
+</objects>

@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour {
     [SerializeField] float attackCooldown = 2f;
     [SerializeField] float damage = 10;
 
+    [SerializeField] PlayerAudioController audioController;
+
     EnemyInput input;
     PlayerController target;
     float attackCooldownTimer;
@@ -18,6 +20,7 @@ public class EnemyController : MonoBehaviour {
         banditController.AttackHitEvent += CheckIfTargetInRange;
         banditController.DiedEvent += Despawn;
         banditController.DiedEvent += HandleDeath;
+        banditController.FootstepEvent += PlayFootstepSound;
     }
 
     void Despawn() {
@@ -64,16 +67,23 @@ public class EnemyController : MonoBehaviour {
         if (target && !target.IsDead) {
             if (distanceToTarget <= attackRange) {
                 input.isAttacking = true;
+                audioController.HandleEvent(PlayerEventType.Attack);
                 attackCooldownTimer = attackCooldown;
             }
         }
     }
 
+    public void PlayFootstepSound() {
+        audioController.HandleEvent(PlayerEventType.Footstep);
+    }
+    
     public void DealDamage(float damage) {
         banditController.TakeDamage(damage);
+        audioController.HandleEvent(PlayerEventType.Damage);
     }
 
     void HandleDeath() {
         GetComponent<Collider2D>().enabled = false;
+        audioController.HandleEvent(PlayerEventType.Death);
     }
 }

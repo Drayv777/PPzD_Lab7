@@ -10,6 +10,9 @@ public class Bandit : MonoBehaviour {
     public event Action LandedEvent = delegate { };
     public event Action FootstepEvent = delegate { };
     public event Action AttackHitEvent = delegate { };
+    public event Action TakenDamageEvent = delegate { };
+    public event Action BlockedEvent = delegate { };
+    public event Action HeartBeatEvent = delegate { };
 
 
     [SerializeField] float m_speed = 1.0f;
@@ -25,6 +28,8 @@ public class Bandit : MonoBehaviour {
     bool m_grounded;
     bool m_combatIdle;
     bool m_isDead;
+
+    public bool isPlayer = false;
 
     float postAttackCooldown;
     float postBlockCooldown;
@@ -120,10 +125,14 @@ public class Bandit : MonoBehaviour {
     }
 
     public void TakeDamage(float damage) {
+        TakenDamageEvent();
         if (m_isDead)
             return;
-        if (IsBlocking)
+        if (IsBlocking) {
+            BlockedEvent();
             return;
+        }
+            
         currentHealth -= damage;
         var healthPercentage = currentHealth / maxHealth;
         healthDisplay.SetPercentage(healthPercentage);
@@ -140,7 +149,15 @@ public class Bandit : MonoBehaviour {
         return postAttackCooldown <= 0 && !IsBlocking;
     }
 
-    void FireAnimationEventOnFootstep() {
+    public float getMaxHealth() {
+        return maxHealth;
+    }
+    
+    public float getCurrentHealth() {
+        return currentHealth;
+    }
+    
+    public void FireAnimationEventOnFootstep() {
         FootstepEvent();
     }
 

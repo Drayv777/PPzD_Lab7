@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{655fca5f-39d4-44ae-8e99-c2657edc809d}">
+		<property name="assetPath">
+			<value>Music/Robert_Farmer_-_01_-_Turn_the_old_return_to_them.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>175.09877551020409</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2e7fa7ae-b49d-436c-aabb-4972b813b748}</destination>
+		</relationship>
+	</object>
+</objects>

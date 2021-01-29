@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6185106790293623065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 673069661675157832}
+  - component: {fileID: 8446756596545271095}
+  m_Layer: 9
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &673069661675157832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6185106790293623065}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7121411470492481930}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8446756596545271095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6185106790293623065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7ddf61b732f8f498a2660c91fdac12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onStep: event:/Player/Footstep
+  onJump: event:/Player/Jump
+  onLanding: event:/Player/Jump
+  onDeath: event:/Player/Death
+  onAttack: event:/Player/Attack
+  onDamage: event:/Player/Damage
+  onBlock: event:/Player/Block
 --- !u!1 &7120849535837189486
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +276,7 @@ Transform:
   - {fileID: 7117169868968339948}
   - {fileID: 7123424385083807506}
   - {fileID: 852130529345367496}
+  - {fileID: 673069661675157832}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -293,6 +344,7 @@ MonoBehaviour:
   attackRange: 0.25
   attackCooldown: 2
   damage: 10
+  audioController: {fileID: 8446756596545271095}
 --- !u!1001 &8500677066512419177
 PrefabInstance:
   m_ObjectHideFlags: 0
